@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.content-wrapper {
+  min-height: 100vh !important;
+}
+
+table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
+.form-control {
+  margin: 10px 0px 20px 0px;
+}
+
+input[type="submit"] {
+  background-color: teal;
+  margin: 20px 0px 30px 0px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+input[type="submit"].disabled {
+  background-color: grey;
+}
