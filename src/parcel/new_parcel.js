@@ -202,10 +202,18 @@ class NewParcel extends Component {
                     <input
                       type="submit"
                       onClick={(e) => {
-                        this.saveParcel(e);
+                        e.preventDefault();
+                        window.location.href = '/'
                       }}
-                      value="Save Parcel"
+                      value="Back to Dashboard"
                     />
+                      <input
+                        type="submit"
+                        onClick={(e) => {
+                          this.saveParcel(e);
+                        }}
+                        value="Save Parcel"
+                      />
                   </div>
                 </form>
               </Box>
@@ -223,9 +231,9 @@ class NewParcel extends Component {
     if (
       name === "height" ||
       name === "width" ||
-      name == "length" ||
-      name == "weight" ||
-      name == "price"
+      name === "length" ||
+      name === "weight" ||
+      name === "price"
     ) {
       this.setParcelInfo(event, name);
     } else {
@@ -260,15 +268,15 @@ class NewParcel extends Component {
         weight: "",
         price: "",
       };
-      if (name == "height") {
+      if (name === "height") {
         pi.height = event.target.value;
-      } else if (name == "width") {
+      } else if (name === "width") {
         pi.width = event.target.value;
-      } else if (name == "length") {
+      } else if (name === "length") {
         pi.length = event.target.value;
-      } else if (name == "weight") {
+      } else if (name === "weight") {
         pi.weight = event.target.value;
-      } else if (name == "price") {
+      } else if (name === "price") {
         pi.price = event.target.value;
       }
       this.setState({

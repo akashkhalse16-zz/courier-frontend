@@ -44,17 +44,15 @@ class Dashboard extends Component {
               <Box
                 title="Parcel Data"
                 type="primary"
-                // footer={<Button type="danger" text="Danger Button" />}
               >
                 <table class="table table-striped table-bordered table-hover text-center">
                 <thead class="thead-dark">
                   <tr>
+                    <th>Parcel ID</th>
                     <th>Sender Name</th>
                     <th>Sender Address</th>
-                    <th>Sender Contact</th>
                     <th>Recipient Name</th>
                     <th>Recipient Address</th>
-                    <th>Recipient Contact</th>
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -62,14 +60,13 @@ class Dashboard extends Component {
                 {
                   this.state.parcels.map((p, i) => {
                     return(
-                      <tr>
+                      <tr key={'d' + i}>
+                        <td>{p.id}</td>
                         <td>{p.sender_name}</td>
                         <td>{p.sender_addr}</td>
-                        <td>{p.sender_contact}</td>
                         <td>{p.recipient_name}</td>
                         <td>{p.recipient_addr}</td>
-                        <td>{p.recipient_contact}</td>
-                        <td style={{"color": "teal", "font-weight" : "900"}}>{p.status}</td>
+                        <td style={{"color": "teal", "fontWeight" : "900"}}>{p.status}</td>
                       </tr>
                       )
                     })

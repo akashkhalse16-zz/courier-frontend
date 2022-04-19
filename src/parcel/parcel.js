@@ -30,11 +30,17 @@ class Parcel extends Component {
       })
   }
 
-  viewParcel() {
-
+  viewParcel(e, id) {
+    e.preventDefault();
+    console.log(id);
+    window.location.href = '/parcel/' + id
   }
 
-  updateParcel() {
+  updateParcel(e, id) {
+    e.preventDefault();
+    console.log(id);
+
+    window.location.href = 'parcel/update/' + id
   }
 
   deleteParcel(e, id) {
@@ -68,11 +74,11 @@ class Parcel extends Component {
               <Box
                 title="Parcel Data"
                 type="primary"
-                // footer={<Button type="danger" text="Danger Button" />}
               >
                 <table class="table table-striped table-bordered table-hover text-center">
                 <thead class="thead-dark">
                   <tr>
+                    <th>Parcel ID</th>
                     <th>Sender Name</th>
                     <th>Recipient Name</th>
                     <th>Status</th>
@@ -83,14 +89,19 @@ class Parcel extends Component {
                 {
                   this.state.parcels.map((p, i) => {
                     return(
-                      <tr>
+                      <tr key={'p' + i}>
+                        <td>{p.id}</td>
                         <td>{p.sender_name}</td>
                         <td>{p.recipient_name}</td>
-                        <td style={{"color": "teal", "font-weight" : "900"}}>{p.status}</td>
+                        <td style={{"color": "teal", "fontWeight" : "900"}}>{p.status}</td>
                         <td>
-                          <i style={{"border-radius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "teal" , "margin" : "5px"}} class="fa fa-eye"></i>
-                          <i style={{"border-radius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "navy" , "margin" : "5px"}} class="fa fa-edit"></i>
-                          <i style={{"border-radius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "red" , "margin" : "5px"}} class="fa fa-trash" onClick={(e) => {
+                          <i style={{"borderRadius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "teal" , "margin" : "5px"}} class="fa fa-eye" onClick={(e) => {
+                        this.viewParcel(e, p.id);
+                      }}></i>
+                          <i style={{"borderRadius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "navy" , "margin" : "5px"}} class="fa fa-edit" onClick={(e) => {
+                        this.updateParcel(e, p.id);
+                      }}></i>
+                          <i style={{"borderRadius": "5px", "padding": "5px", "color": "white", "backgroundColor" : "red" , "margin" : "5px"}} class="fa fa-trash" onClick={(e) => {
                         this.deleteParcel(e, p.id);
                       }}></i>
                         </td>
@@ -100,6 +111,16 @@ class Parcel extends Component {
                   }
                   </tbody>
                   </table>
+                  <div class="col-md-12">
+                    <input
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = '/'
+                      }}
+                      value="Back to Dashboard"
+                    />
+                  </div>
               </Box>
             </Col>
           </Row>

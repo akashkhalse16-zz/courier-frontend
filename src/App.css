@@ -54,7 +54,7 @@ table {
 
 input[type="submit"] {
   background-color: teal;
-  margin: 20px 0px 30px 0px;
+  margin: 20px 20px 30px 0px;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -64,4 +64,13 @@ input[type="submit"] {
 
 input[type="submit"].disabled {
   background-color: grey;
+}
+
+#viewParcel{
+  margin: 0 auto;
+  text-align: center;
+}
+
+#parcel-view td{
+  width: 50%;
 }
