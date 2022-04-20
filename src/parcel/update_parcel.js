@@ -31,6 +31,7 @@ class UpdateParcel extends Component {
         status: "",
       },
       update: false,
+      statusUpdatedValue : ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -40,23 +41,9 @@ class UpdateParcel extends Component {
   }
 
   handleInputChange(event) {
-    this.setState(state => {
-        this.state.parcel.status = event.target.value
-        return state
-      });
-  }
-
-  getParcel() {
-    axios
-      .get(`http://localhost:3000/parcel/` + this.props.match.params.id)
-      .then((res) => {
-        if (res.status === 200) {
-          let data = res.data;
-          data.parcel_info =
-            data.parcel_info !== "" ? JSON.parse(res.data.parcel_info) : "";
-          this.setState({ parcel: data });
-        }
-      });
+    this.setState({
+        statusUpdatedValue : event.target.value
+    });
   }
 
   render() {
@@ -261,6 +248,7 @@ class UpdateParcel extends Component {
   updateParcelStatus(e) {
       if(window.confirm('Please confirm if you want to update the status ?')) {
         let data = this.state.parcel;
+        data.status = this.state.statusUpdatedValue;
         data.parcel_info =
           data.parcel_info !== "" ? JSON.stringify(data.parcel_info) : "";
           axios.put('http://localhost:3000/parcel/update', data)
@@ -277,6 +265,19 @@ class UpdateParcel extends Component {
 
   goBack() {
     window.history.go(-1);
+  }
+
+  getParcel() {
+    axios
+      .get(`http://localhost:3000/parcel/` + this.props.match.params.id)
+      .then((res) => {
+        if (res.status === 200) {
+          let data = res.data;
+          data.parcel_info =
+            data.parcel_info !== "" ? JSON.parse(res.data.parcel_info) : "";
+          this.setState({ parcel: data });
+        }
+      });
   }
 }
 

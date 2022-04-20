@@ -9,6 +9,7 @@ import AdminLTE, {
   Col,
   Box,
   Button,
+  Navbar
 } from "adminlte-2-react";
 import Dashboard from "./dashboard/dashboard";
 import Parcel from "./parcel/parcel";
@@ -16,10 +17,17 @@ import Track from "./track/track";
 import NewParcel from "./parcel/new_parcel";
 import ViewParcel from "./parcel/view_parcel";
 import UpdateParcel from "./parcel/update_parcel";
+import Login from "./login/login";
 
 const { Item, Header, UserPanel, Searchbar } = Sidebar;
 
 function App() {
+
+  const isSignedIn = document.cookie
+  .split('; ')
+  .find(row => row.startsWith('userLoggedIn='))
+  .split('=')[1] === 'true' ? true : false
+
   const sidebar = [
     <Item key="dashboard" text="Dashboard" to="/" icon="far-folder" />,
     <Item key="parcel" text="New Parcel" to="/new_parcel" icon="far-folder" />,
@@ -27,20 +35,39 @@ function App() {
     <Item key="track" text="Track Parcel" to="/track" icon="far-folder" />,
   ];
 
+  const userPanel = [
+
+  ]
+
   return (
-       <AdminLTE
-        title={["Courier ", "Management"]}
-        titleShort={["CR", "M"]}
-        theme="blue"
-        sidebar={sidebar}
-        >
-          <Dashboard exact path="/" />
-          <Parcel exact path="/parcels" />
-          <Track exact path="/track" />
-          <NewParcel exact path="/new_parcel" />
-          <ViewParcel exact path="/parcel/:id" />
-          <UpdateParcel exact path="/parcel/update/:id" />
-      </AdminLTE>
+
+    isSignedIn ? (
+      <>
+        <AdminLTE
+          title={["Courier ", "Management"]}
+          titleShort={["CR", "M"]}
+          theme="blue"
+          sidebar={sidebar}
+          >
+            <Navbar.Core>
+              <li style={{ "margin" : "15px;"}} onClick={(e) => {
+                          e.preventDefault();
+                          document.cookie = "userLoggedIn=false;";
+                          window.location.href = "/login";
+                        }}>Sign Out</li>
+            </Navbar.Core>
+            <Dashboard exact path="/" />
+            <Parcel exact path="/parcels" />
+            <Track exact path="/track" />
+            <NewParcel exact path="/new_parcel" />
+            <ViewParcel exact path="/parcel/:id" />
+            <UpdateParcel exact path="/parcel/update/:id" />
+            <Login exact path="/login"/>
+        </AdminLTE>
+      </>
+    ) : 
+    <Login exact path="/login" />
+
   );
 }
 
