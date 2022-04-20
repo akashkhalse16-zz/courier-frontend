@@ -18,6 +18,8 @@ import NewParcel from "./parcel/new_parcel";
 import ViewParcel from "./parcel/view_parcel";
 import UpdateParcel from "./parcel/update_parcel";
 import Login from "./login/login";
+import Contact from "./components/Contact";
+import About from "./components/About";
 
 const { Item, Header, UserPanel, Searchbar } = Sidebar;
 
@@ -33,6 +35,8 @@ function App() {
     <Item key="parcel" text="New Parcel" to="/new_parcel" icon="far-folder" />,
     <Item key="parcel" text="All Parcels" to="/parcels" icon="far-folder" />,
     <Item key="track" text="Track Parcel" to="/track" icon="far-folder" />,
+    <Item key="track" text="Contact Us" to="/contact-us" icon="far-folder" />,
+    <Item key="track" text="About Us" to="/about-us" icon="far-folder" />
   ];
 
   const userPanel = [
@@ -63,6 +67,8 @@ function App() {
             <ViewParcel exact path="/parcel/:id" />
             <UpdateParcel exact path="/parcel/update/:id" />
             <Login exact path="/login"/>
+            <Contact exact path="/contact-us" />
+            <About exact path="/about-us" />
         </AdminLTE>
       </>
     ) : 

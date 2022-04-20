@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from 'axios';
+import Home from "../components/Home";
 
 import AdminLTE, {
   Sidebar,
@@ -41,6 +42,7 @@ class Dashboard extends Component {
         >
           <Row>
             <Col xs={12}>
+            <Home />
               <Box
                 title="Parcel Data"
                 type="primary"
