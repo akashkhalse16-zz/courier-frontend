@@ -1,14 +1,6 @@
 import { Component } from "react";
-import axios from "axios";
-
-import AdminLTE, {
-  Sidebar,
-  Content,
-  Row,
-  Col,
-  Box,
-  Button,
-} from "adminlte-2-react";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Login extends Component {
 
@@ -23,10 +15,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        const isSignedIn = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('userLoggedIn='))
-        .split('=')[1] === 'true' ? true : false
+        const isSignedIn = cookies.get('userLoggedIn') === 'true' ? true : false
         if (isSignedIn) {
             window.location.href = '/';
         }
@@ -89,7 +78,7 @@ class Login extends Component {
   login(e) {
       e.preventDefault();
       if (this.state.email === 'admin' && this.state.password === 'admin') {
-          document.cookie = "userLoggedIn=true;";
+          cookies.set('userLoggedIn', 'true', { path: '/' });
           window.location.href = '/';
       }
   }

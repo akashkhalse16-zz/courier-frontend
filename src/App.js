@@ -20,15 +20,14 @@ import UpdateParcel from "./parcel/update_parcel";
 import Login from "./login/login";
 import Contact from "./components/Contact";
 import About from "./components/About";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const { Item, Header, UserPanel, Searchbar } = Sidebar;
 
 function App() {
 
-  const isSignedIn = document.cookie
-  .split('; ')
-  .find(row => row.startsWith('userLoggedIn='))
-  .split('=')[1] === 'true' ? true : false
+  const isSignedIn = cookies.get('userLoggedIn') === 'true' ? true : false
 
   const sidebar = [
     <Item key="dashboard" text="Dashboard" to="/" icon="far-folder" />,
