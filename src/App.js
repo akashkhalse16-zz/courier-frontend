@@ -35,8 +35,8 @@ function App() {
     <Item key="parcel" text="New Parcel" to="/new_parcel" icon="far-folder" />,
     <Item key="parcel" text="All Parcels" to="/parcels" icon="far-folder" />,
     <Item key="track" text="Track Parcel" to="/track" icon="far-folder" />,
-    <Item key="track" text="Contact Us" to="/contact-us" icon="far-folder" />,
-    <Item key="track" text="About Us" to="/about-us" icon="far-folder" />
+    // <Item key="track" text="Contact Us" to="/contact-us" icon="far-folder" />,
+    // <Item key="track" text="About Us" to="/about-us" icon="far-folder" />
   ];
 
   const userPanel = [

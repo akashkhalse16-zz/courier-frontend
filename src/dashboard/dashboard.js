@@ -42,7 +42,7 @@ class Dashboard extends Component {
         >
           <Row>
             <Col xs={12}>
-            <Home />
+            {/* <Home /> */}
               <Box
                 title="Parcel Data"
                 type="primary"
